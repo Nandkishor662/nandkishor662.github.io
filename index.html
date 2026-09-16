@@ -1,12 +1,255 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="refresh" content="0; url=NKB_ENTERPRISES_FINAL_FIXED.html">
 <title>NKB ENTERPRISES</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f7f3ee;
+color:#222;
+}
+header{
+background:white;
+text-align:center;
+padding:25px 10px;
+}
+header h1{
+margin:0;
+font-size:30px;
+}
+header p{
+color:#666;
+}
+.products{
+max-width:1200px;
+margin:20px auto;
+padding:15px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+.product{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 3px 12px #ccc;
+text-align:center;
+}
+.product img{
+width:100%;
+display:block;
+}
+.product h2{
+font-size:17px;
+margin:14px 8px 7px;
+}
+.price{
+font-size:24px;
+font-weight:bold;
+margin:8px;
+}
+.orderbtn{
+background:#25D366;
+color:white;
+border:0;
+padding:12px 25px;
+border-radius:8px;
+font-size:16px;
+font-weight:bold;
+margin:8px 0 18px;
+cursor:pointer;
+}
+.formbox{
+display:none;
+max-width:500px;
+margin:30px auto;
+padding:20px;
+background:white;
+border-radius:15px;
+box-shadow:0 3px 15px #ccc;
+}
+.formbox h2{text-align:center}
+input,textarea{
+width:100%;
+padding:12px;
+margin:7px 0;
+border:1px solid #ccc;
+border-radius:7px;
+font-size:15px;
+box-sizing:border-box;
+}
+.submit{
+width:100%;
+padding:13px;
+background:#25D366;
+color:white;
+border:0;
+border-radius:8px;
+font-size:17px;
+font-weight:bold;
+}
+@media(max-width:800px){
+.products{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:500px){
+.products{grid-template-columns:1fr}
+}
+</style>
 </head>
+
 <body>
-<p>Opening NKB ENTERPRISES...</p>
+
+<header>
+<h1>NKB ENTERPRISES</h1>
+<p>Hand-Painted Pooja & Decorative Collection</p>
+</header>
+
+<div class="products">
+
+<div class="product">
+<img src="file_000000000bd08211b93221afb55b7c12.png">
+<h2>Karwa Chauth Thali Set</h2>
+<div class="price">₹799</div>
+<button class="orderbtn" onclick="order('Karwa Chauth Thali Set','799')">Order Now</button>
+</div>
+
+<div class="product">
+<img src="file_000000002414820aa2d47400ae9b31e1.png">
+<h2>Karwa Chauth Thali Set</h2>
+<div class="price">₹799</div>
+<button class="orderbtn" onclick="order('Karwa Chauth Thali Set','799')">Order Now</button>
+</div>
+
+<div class="product">
+<img src="file_0000000033808211b826b375820a25ef.png">
+<h2>Decorative Pooja Plate</h2>
+<div class="price">₹349</div>
+<button class="orderbtn" onclick="order('Decorative Pooja Plate','349')">Order Now</button>
+</div>
+
+<div class="product">
+<img src="file_0000000039488208aaa145b3a02d10ce.png">
+<h2>Decorative Pooja Plate</h2>
+<div class="price">₹349</div>
+<button class="orderbtn" onclick="order('Decorative Pooja Plate','349')">Order Now</button>
+</div>
+
+<div class="product">
+<img src="file_000000004a88821188db2022b0184c1b.png">
+<h2>Swastik Pooja Plate</h2>
+<div class="price">₹349</div>
+<button class="orderbtn" onclick="order('Swastik Pooja Plate','349')">Order Now</button>
+</div>
+
+<div class="product">
+<img src="file_000000005464821194ac10f39e7cfff5.png">
+<h2>Floral Pooja Plate</h2>
+<div class="price">₹349</div>
+<button class="orderbtn" onclick="order('Floral Pooja Plate','349')">Order Now</button>
+</div>
+
+<div class="product">
+<img src="file_0000000084b481f5b2b8e6dec1305097.png">
+<h2>Om Pooja Plate</h2>
+<div class="price">₹349</div>
+<button class="orderbtn" onclick="order('Om Pooja Plate','349')">Order Now</button>
+</div>
+
+<div class="product">
+<img src="file_00000000d86c8210af1a99b4e9896b8e.png">
+<h2>Swastik Lotus Pooja Plate</h2>
+<div class="price">₹349</div>
+<button class="orderbtn" onclick="order('Swastik Lotus Pooja Plate','349')">Order Now</button>
+</div>
+
+<div class="product">
+<img src="file_00000000e3c881fd8f9d8676d9279788.png">
+<h2>Decorative Pooja Plate</h2>
+<div class="price">₹349</div>
+<button class="orderbtn" onclick="order('Decorative Pooja Plate','349')">Order Now</button>
+</div>
+
+</div>
+
+<div class="formbox" id="orderForm">
+
+<h2>Place Your Order</h2>
+
+<input id="product" readonly>
+<input id="price" readonly>
+
+<input id="name" placeholder="Customer Name">
+<input id="mobile" placeholder="Mobile Number" type="tel">
+<textarea id="address" placeholder="Complete Address"></textarea>
+<input id="pincode" placeholder="Pincode" type="number">
+<input id="quantity" placeholder="Quantity" type="number" value="1" min="1">
+
+<button class="submit" onclick="sendOrder()">Order on WhatsApp</button>
+
+</div>
+
+<script>
+
+function order(product,price){
+
+document.getElementById("product").value=product;
+document.getElementById("price").value="₹"+price;
+
+document.getElementById("orderForm").style.display="block";
+
+window.scrollTo({
+top:document.getElementById("orderForm").offsetTop,
+behavior:"smooth"
+});
+
+}
+
+function sendOrder(){
+
+var name=document.getElementById("name").value;
+var mobile=document.getElementById("mobile").value;
+var address=document.getElementById("address").value;
+var pincode=document.getElementById("pincode").value;
+var quantity=document.getElementById("quantity").value;
+var product=document.getElementById("product").value;
+var price=document.getElementById("price").value;
+
+if(!name || !mobile || !address || !pincode || !quantity){
+
+alert("Please fill all details");
+return;
+
+}
+
+/*
+IMPORTANT:
+Yahan apna WhatsApp number 91 ke saath daalna hai.
+Example: 919999999999
+*/
+var whatsappNumber="YOUR_WHATSAPP_NUMBER";
+
+var message=
+"NEW ORDER - NKB ENTERPRISES%0A%0A"+
+"Product: "+product+"%0A"+
+"Price: "+price+"%0A"+
+"Quantity: "+quantity+"%0A%0A"+
+"Customer Name: "+name+"%0A"+
+"Mobile: "+mobile+"%0A"+
+"Address: "+address+"%0A"+
+"Pincode: "+pincode;
+
+window.open(
+"https://wa.me/"+whatsappNumber+"918750386819?text="+message,
+"_blank"
+);
+
+}
+
+</script>
+
 </body>
 </html>
